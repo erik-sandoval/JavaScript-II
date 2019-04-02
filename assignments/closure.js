@@ -1,6 +1,29 @@
 // ==== Challenge 1: Write your own closure ====
 // Write a simple closure of your own creation.  Keep it simple!
+function sanDiegoZoo() {
+  const birds = 'tweet tweet tweet';
+  const lizards = '*blink*';
 
+  const cage1 = () => {
+    const lions = 'ROAR!!!!';
+  }
+  const cage2 = () => {
+    const gorillas = '*heavy grunting*';
+  }
+  const cage3 = () => {
+    const pandas = '*sleeping*';
+  }
+  const water = () => {
+    const coral = '*exists*';
+    const tank1 = () => {
+      const fishes = '*gulp gulp*';
+    }
+    const tank2 = () => {
+      const sharks = '*jaws music*'
+    }
+  }
+
+}
 
 /* STRETCH PROBLEMS, Do not attempt until you have completed all previous tasks for today's project files */
 
