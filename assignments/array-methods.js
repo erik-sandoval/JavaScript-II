@@ -56,28 +56,105 @@ const runners = [{ "id": 1, "first_name": "Charmain", "last_name": "Seiler", "em
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs.  Combine both the first and last names into a new array called fullName. 
 let fullName = [];
+runners.forEach(function (index) {
+    let name = index.first_name.concat(' ', index.last_name);
+    fullName.push(name);
+})
 console.log(fullName);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runner's first names converted to uppercase because the director BECAME DRUNK WITH POWER. Convert each first name into all caps and log the result
 let allCaps = [];
+
+allCaps = runners.map(function (index) {
+    return index.first_name.toUpperCase();
+})
 console.log(allCaps);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
 let largeShirts = [];
+largeShirts = runners.filter(function (index) {
+    return index.shirt_size === 'L';
+});
 console.log(largeShirts);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
 let ticketPriceTotal = [];
+
+ticketPriceTotal = runners.map(function (index) {
+    return index.donation;
+});
+
+ticketPriceTotal = ticketPriceTotal.reduce(function (acc, currVal) {
+    return acc + currVal;
+})
+
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// Find out how many unique companies are going to be in this event.
+
+let companiesHere = runners.map(function (index) {
+    return index.company_name;
+});
+
+companiesHere = companiesHere.filter(function (company, index) {
+    return companiesHere.indexOf(company) >= index;
+});
+
+console.log(companiesHere);
 
 // Problem 2
+// We want to send a reminder to everyone in the race, the day before. Collect their e-mails and put them in an array. 
+
+let runnerEmail = runners.map(function (index) {
+    return index.email;
+});
+
+console.log(runnerEmail);
 
 // Problem 3
+// Let's make sure we have enough shirts. Get a count of how many size we need for each shirt size.
+
+
+let shirtArr = runners.map(function (index) {
+    return index.shirt_size;
+});
+
+const shirtTally = function () {
+    let xsCounter = 0;
+    let smCounter = 0;
+    let mCounter = 0;
+    let lCounter = 0;
+    let xlCounter = 0;
+    let xxlCounter = 0;
+    let xxxlCounter = 0;
+    shirtArr.forEach(function (shirtSize) {
+        if (shirtSize === 'XS') {
+            xsCounter += 1;
+        } else if (shirtSize === 'S') {
+            smCounter += 1;
+        } else if (shirtSize === 'M') {
+            mCounter += 1;
+        } else if (shirtSize === 'L') {
+            lCounter += 1;
+        } else if (shirtSize === 'XL') {
+            xlCounter += 1;
+        } else if (shirtSize === '2XL') {
+            xxlCounter += 1;
+        } else if (shirtSize === '3XL') {
+            xxxlCounter += 1;
+        }
+    });
+
+    let total = xsCounter + smCounter + mCounter + lCounter + xlCounter + xxlCounter + xxxlCounter;
+    return console.log(`XS: ${xsCounter}, S: ${smCounter}, M: ${mCounter}, L: ${lCounter}, 
+    XL: ${xlCounter}, XXL: ${xxlCounter}, 3XL: ${xxxlCounter}. Total: ${total} Shirts.`);
+};
+
+shirtTally();
